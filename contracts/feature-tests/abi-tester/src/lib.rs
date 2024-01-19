@@ -14,16 +14,24 @@ use abi_test_type::*;
 #[dharitri_wasm_derive::contract(AbiTesterImpl)]
 pub trait AbiTester {
 	#[endpoint]
+	#[output_name("single output")]
+	#[output_name("this one doesn't show up")]
 	fn echo_abi_test_type(&self, att: AbiTestType) -> AbiTestType {
 		att
 	}
 
 	#[endpoint]
+	#[output_name("multi-result-1")]
+	#[output_name("multi-result-2")]
+	#[output_name("multi-result-3")]
+	#[output_name("multi-result-in-excess")]
 	fn multi_result_3(&self) -> MultiResult3<i32, [u8; 3], BoxedBytes> {
 		(1, [2; 3], BoxedBytes::empty()).into()
 	}
 
 	#[endpoint]
+	#[output_name("multi-too-few-1")]
+	#[output_name("multi-too-few-2")]
 	fn multi_result_4(&self) -> MultiResult4<i32, [u8; 3], BoxedBytes, OnlyShowsUpAsNested3> {
 		(
 			1,
@@ -67,5 +75,5 @@ pub trait AbiTester {
 
 	#[endpoint]
 	#[payable]
-	fn payable_moax(&self, #[payment] _payment: BigUint) {}
+	fn payable_moa(&self, #[payment] _payment: BigUint) {}
 }

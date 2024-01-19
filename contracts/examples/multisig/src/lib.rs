@@ -145,8 +145,8 @@ pub trait Multisig {
 		self.propose_action(Action::ChangeQuorum(new_quorum))
 	}
 
-	#[endpoint(proposeSendMoax)]
-	fn propose_send_moax(
+	#[endpoint(proposeSendMoa)]
+	fn propose_send_moa(
 		&self,
 		to: Address,
 		amount: BigUint,
@@ -156,7 +156,7 @@ pub trait Multisig {
 			OptionalArg::Some(data) => data,
 			OptionalArg::None => BoxedBytes::empty(),
 		};
-		self.propose_action(Action::SendMoax { to, amount, data })
+		self.propose_action(Action::SendMoa { to, amount, data })
 	}
 
 	#[endpoint(proposeSCDeploy)]
@@ -409,7 +409,7 @@ pub trait Multisig {
 				);
 				self.set_quorum(new_quorum)
 			},
-			Action::SendMoax { to, amount, data } => {
+			Action::SendMoa { to, amount, data } => {
 				self.send_tx(&to, &amount, data.as_slice());
 			},
 			Action::SCDeploy {

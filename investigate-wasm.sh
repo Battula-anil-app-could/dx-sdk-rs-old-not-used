@@ -23,11 +23,11 @@ mkdir -p output
 cp wasm/target/wasm32-unknown-unknown/release/adder_wasm.wasm output/adder-dbg.wasm
 cd ../../..
 
-cd contracts/examples/crowdfunding-moax/wasm
+cd contracts/examples/crowdfunding-moa/wasm
 cargo build --target=wasm32-unknown-unknown --release
 cd ..
 mkdir -p output
-cp wasm/target/wasm32-unknown-unknown/release/crowdfunding_moax_wasm.wasm output/crowdfunding-moax-dbg.wasm
+cp wasm/target/wasm32-unknown-unknown/release/crowdfunding_moa_wasm.wasm output/crowdfunding-moa-dbg.wasm
 cd ../../..
 
 cd contracts/examples/crowdfunding-erc20/wasm
@@ -58,11 +58,11 @@ mkdir -p output
 cp wasm/target/wasm32-unknown-unknown/release/factorial_wasm.wasm output/factorial-dbg.wasm
 cd ../../..
 
-cd contracts/examples/lottery-moax/wasm
+cd contracts/examples/lottery-moa/wasm
 cargo build --target=wasm32-unknown-unknown --release
 cd ..
 mkdir -p output
-cp wasm/target/wasm32-unknown-unknown/release/lottery_moax_wasm.wasm output/lottery-moax-dbg.wasm
+cp wasm/target/wasm32-unknown-unknown/release/lottery_moa_wasm.wasm output/lottery-moa-dbg.wasm
 cd ../../..
 
 cd contracts/examples/lottery-erc20/wasm

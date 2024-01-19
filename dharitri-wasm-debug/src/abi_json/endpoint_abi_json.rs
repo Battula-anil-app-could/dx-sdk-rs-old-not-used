@@ -31,6 +31,9 @@ impl From<&InputAbi> for InputAbiJson {
 
 #[derive(Serialize, Deserialize)]
 pub struct OutputAbiJson {
+	#[serde(rename = "name")]
+	#[serde(skip_serializing_if = "String::is_empty")]
+	pub output_name: String,
 	#[serde(rename = "type")]
 	pub type_name: String,
 	/// Bool that is only serialized when true
@@ -41,6 +44,7 @@ pub struct OutputAbiJson {
 impl From<&OutputAbi> for OutputAbiJson {
 	fn from(abi: &OutputAbi) -> Self {
 		OutputAbiJson {
+			output_name: abi.output_name.into(),
 			type_name: abi.type_name.clone(),
 			multi_result: if abi.multi_result { Some(true) } else { None },
 		}
@@ -63,7 +67,7 @@ impl From<&EndpointAbi> for EndpointAbiJson {
 	fn from(abi: &EndpointAbi) -> Self {
 		let mut payable_in_tokens = Vec::new();
 		if abi.payable {
-			payable_in_tokens.push("MOAX".to_string());
+			payable_in_tokens.push("MOA".to_string());
 		}
 		EndpointAbiJson {
 			docs: abi.docs.iter().map(|d| d.to_string()).collect(),

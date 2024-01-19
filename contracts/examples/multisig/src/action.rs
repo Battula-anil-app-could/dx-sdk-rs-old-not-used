@@ -8,7 +8,7 @@ pub enum Action<BigUint: BigUintApi> {
 	AddProposer(Address),
 	RemoveUser(Address),
 	ChangeQuorum(usize),
-	SendMoax {
+	SendMoa {
 		to: Address,
 		amount: BigUint,
 		data: BoxedBytes,
