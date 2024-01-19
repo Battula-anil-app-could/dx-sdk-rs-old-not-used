@@ -3,7 +3,7 @@ use serde::{ser, Serialize};
 use super::bytes_err::{SDError, Result};
 use alloc::vec::Vec;
 
-pub struct ErdSerializer {
+pub struct MoaSerializer {
     output: Vec<u8>,
     top_level: bool,
 }
@@ -17,7 +17,7 @@ pub fn to_bytes<T>(value: T) -> Result<Vec<u8>>
 where
     T: Serialize,
 {
-    let mut serializer = ErdSerializer {
+    let mut serializer = MoaSerializer {
         output: Vec::new(),
         top_level: true,
     };
@@ -27,7 +27,7 @@ where
 
 /// Temporary solution to serialize u64 until wasm compilation issue is fixed.
 pub fn u64_to_bytes(v: u64) -> Vec<u8> {
-    let mut serializer = ErdSerializer {
+    let mut serializer = MoaSerializer {
         output: Vec::new(),
         top_level: true,
     };
@@ -35,7 +35,7 @@ pub fn u64_to_bytes(v: u64) -> Vec<u8> {
     serializer.output
 }
 
-impl ErdSerializer {
+impl MoaSerializer {
     fn push_byte(&mut self, value: u8) {
         self.output.push(value);
     }
@@ -80,7 +80,7 @@ impl ErdSerializer {
     }
 }
 
-impl<'a> ser::Serializer for &'a mut ErdSerializer {
+impl<'a> ser::Serializer for &'a mut MoaSerializer {
     // The output type produced by this `Serializer` during successful
     // serialization. Most serializers that produce text or binary output should
     // set `Ok = ()` and serialize into an `io::Write` or buffer contained
@@ -360,7 +360,7 @@ impl<'a> ser::Serializer for &'a mut ErdSerializer {
 //
 // This impl is SerializeSeq so these methods are called after `serialize_seq`
 // is called on the Serializer.
-impl<'a> ser::SerializeSeq for &'a mut ErdSerializer {
+impl<'a> ser::SerializeSeq for &'a mut MoaSerializer {
     // Must match the `Ok` type of the serializer.
     type Ok = ();
     // Must match the `Error` type of the serializer.
@@ -381,7 +381,7 @@ impl<'a> ser::SerializeSeq for &'a mut ErdSerializer {
 }
 
 // Same thing but for tuples.
-impl<'a> ser::SerializeTuple for &'a mut ErdSerializer {
+impl<'a> ser::SerializeTuple for &'a mut MoaSerializer {
     type Ok = ();
     type Error = SDError;
 
@@ -398,7 +398,7 @@ impl<'a> ser::SerializeTuple for &'a mut ErdSerializer {
 }
 
 // Same thing but for tuple structs.
-impl<'a> ser::SerializeTupleStruct for &'a mut ErdSerializer {
+impl<'a> ser::SerializeTupleStruct for &'a mut MoaSerializer {
     type Ok = ();
     type Error = SDError;
 
@@ -423,7 +423,7 @@ impl<'a> ser::SerializeTupleStruct for &'a mut ErdSerializer {
 //
 // So the `end` method in this impl is responsible for closing both the `]` and
 // the `}`.
-impl<'a> ser::SerializeTupleVariant for &'a mut ErdSerializer {
+impl<'a> ser::SerializeTupleVariant for &'a mut MoaSerializer {
     type Ok = ();
     type Error = SDError;
 
@@ -447,7 +447,7 @@ impl<'a> ser::SerializeTupleVariant for &'a mut ErdSerializer {
 // `serialize_entry` method allows serializers to optimize for the case where
 // key and value are both available simultaneously. In JSON it doesn't make a
 // difference so the default behavior for `serialize_entry` is fine.
-impl<'a> ser::SerializeMap for &'a mut ErdSerializer {
+impl<'a> ser::SerializeMap for &'a mut MoaSerializer {
     type Ok = ();
     type Error = SDError;
 
@@ -483,7 +483,7 @@ impl<'a> ser::SerializeMap for &'a mut ErdSerializer {
 
 // Structs are like maps in which the keys are constrained to be compile-time
 // constant strings.
-impl<'a> ser::SerializeStruct for &'a mut ErdSerializer {
+impl<'a> ser::SerializeStruct for &'a mut MoaSerializer {
     type Ok = ();
     type Error = SDError;
 
@@ -501,7 +501,7 @@ impl<'a> ser::SerializeStruct for &'a mut ErdSerializer {
 
 // Similar to `SerializeTupleVariant`, here the `end` method is responsible for
 // closing both of the curly braces opened by `serialize_struct_variant`.
-impl<'a> ser::SerializeStructVariant for &'a mut ErdSerializer {
+impl<'a> ser::SerializeStructVariant for &'a mut MoaSerializer {
     type Ok = ();
     type Error = SDError;
 

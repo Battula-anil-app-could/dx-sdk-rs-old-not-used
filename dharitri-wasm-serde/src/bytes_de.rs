@@ -6,20 +6,20 @@ use super::bytes_err::{SDError, Result};
 
 const USIZE_SIZE: usize = 4; // wasm32
 
-pub struct ErdDeserializer<'de> {
+pub struct MoaDeserializer<'de> {
     // This string starts with the input data and characters are truncated off
     // the beginning as data is parsed.
     input: &'de [u8],
     top_level: bool,
 }
 
-impl<'de> ErdDeserializer<'de> {
+impl<'de> MoaDeserializer<'de> {
     // By convention, `Deserializer` constructors are named like `from_xyz`.
     // That way basic use cases are satisfied by something like
     // `serde_json::from_str(...)` while advanced use cases that require a
     // deserializer can make one with `serde_json::Deserializer::from_str(...)`.
     fn new(input: &'de [u8]) -> Self {
-        ErdDeserializer { input, top_level: true }
+        MoaDeserializer { input, top_level: true }
     }
 }
 
@@ -32,7 +32,7 @@ pub fn from_bytes<'a, T>(bytes: &'a [u8]) -> Result<T>
 where
     T: Deserialize<'a>,
 {
-    let mut deserializer = ErdDeserializer::new(bytes);
+    let mut deserializer = MoaDeserializer::new(bytes);
     let t = T::deserialize(&mut deserializer)?;
     if deserializer.input.is_empty() {
         Ok(t)
@@ -64,7 +64,7 @@ pub fn bytes_to_number(bytes: &[u8], signed: bool) -> u64 {
     result
 }
 
-impl<'de> ErdDeserializer<'de> {
+impl<'de> MoaDeserializer<'de> {
     fn next_byte(&mut self) -> Result<u8> {
         if !self.input.is_empty() {
             let result = self.input[0];
@@ -109,7 +109,7 @@ macro_rules! impl_nums {
     }
 }
 
-impl<'de> serde::Deserializer<'de> for &mut ErdDeserializer<'de> {
+impl<'de> serde::Deserializer<'de> for &mut MoaDeserializer<'de> {
     type Error = SDError;
 
     #[inline]
@@ -341,7 +341,7 @@ impl<'de> serde::Deserializer<'de> for &mut ErdDeserializer<'de> {
     }
 }
 
-impl<'de, 'a> serde::de::EnumAccess<'de> for &'a mut ErdDeserializer<'de> {
+impl<'de, 'a> serde::de::EnumAccess<'de> for &'a mut MoaDeserializer<'de> {
     type Error = SDError;
     type Variant = Self;
 
@@ -355,7 +355,7 @@ impl<'de, 'a> serde::de::EnumAccess<'de> for &'a mut ErdDeserializer<'de> {
     }
 }
 
-impl<'de, 'a> serde::de::VariantAccess<'de> for &'a mut ErdDeserializer<'de> {
+impl<'de, 'a> serde::de::VariantAccess<'de> for &'a mut MoaDeserializer<'de> {
     type Error = SDError;
 
     fn unit_variant(self) -> Result<()> {
@@ -386,7 +386,7 @@ impl<'de, 'a> serde::de::VariantAccess<'de> for &'a mut ErdDeserializer<'de> {
 }
 
 struct Access<'a, 'de: 'a> {
-    deserializer: &'a mut ErdDeserializer<'de>,
+    deserializer: &'a mut MoaDeserializer<'de>,
     remaining_items_hint: Option<usize>,
 }
 
