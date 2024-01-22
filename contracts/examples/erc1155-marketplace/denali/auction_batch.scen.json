@@ -8,7 +8,7 @@
         {
             "step": "scCall",
             "txId": "auction-batch",
-            "comment": "last argument is an AuctionArgument: token: MOA (serialized as empty string), min_bid: 100, max_bid: 500, deadline: 1000",
+            "comment": "last argument is an AuctionArgument: token: MOAX (serialized as empty string), min_bid: 100, max_bid: 500, deadline: 1000",
             "tx": {
                 "from": "address:creator",
                 "to": "address:ownership_contract",
@@ -19,7 +19,7 @@
                     "address:marketplace_contract",
                     "u32:1|u8:1|u32:1|u8:1",
                     "u32:1|u8:2|u32:1|u8:3",
-                    "u32:4|str:MOA|u32:1|u8:100|u32:2|u16:500|u64:1000"
+                    "u32:4|str:MOAX|u32:1|u8:100|u32:2|u16:500|u64:1000"
                 ],
                 "gasLimit": "0x100000",
                 "gasPrice": "0x00"
@@ -97,8 +97,8 @@
                     "storage": {
                         "str:tokenOwnershipContractAddress": "address:ownership_contract",
                         "str:percentageCut": "10",
-                        "str:auctionForToken|u32:1|u8:1|u32:1|u8:2": "u32:4|str:MOA|u32:1|u8:100|u32:2|u16:500|u64:1000|address:creator|u32:0|u64:0|u64:0|u64:0|u64:0",
-                        "str:auctionForToken|u32:1|u8:1|u32:1|u8:3": "u32:4|str:MOA|u32:1|u8:100|u32:2|u16:500|u64:1000|address:creator|u32:0|u64:0|u64:0|u64:0|u64:0"
+                        "str:auctionForToken|u32:1|u8:1|u32:1|u8:2": "u32:4|str:MOAX|u32:1|u8:100|u32:2|u16:500|u64:1000|address:creator|u32:0|u64:0|u64:0|u64:0|u64:0",
+                        "str:auctionForToken|u32:1|u8:1|u32:1|u8:3": "u32:4|str:MOAX|u32:1|u8:100|u32:2|u16:500|u64:1000|address:creator|u32:0|u64:0|u64:0|u64:0|u64:0"
                     },
                     "code": "file:../output/erc1155-marketplace.wasm"
                 }

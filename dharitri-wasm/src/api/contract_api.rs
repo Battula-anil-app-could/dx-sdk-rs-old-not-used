@@ -23,7 +23,7 @@ where
 	/// Abstracts the call value handling at the beginning of a function call.
 	type CallValue: CallValueApi<BigUint> + ErrorApi + Clone + 'static;
 
-	/// Abstracts the sending of MOA & DCT transactions, as well as async calls.
+	/// Abstracts the sending of MOAX & DCT transactions, as well as async calls.
 	type SendApi: SendApi<BigUint> + Clone + 'static;
 
 	/// Gateway into the lower-level storage functionality.

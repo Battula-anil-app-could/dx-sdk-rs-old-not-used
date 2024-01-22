@@ -52,7 +52,7 @@ pub fn process_callable(
 				#callable_impl_name {
 					api,
 					address,
-					token: dharitri_wasm::types::TokenIdentifier::moa(),
+					token: dharitri_wasm::types::TokenIdentifier::moax(),
 					payment: BigUint::zero(),
 					_phantom1: core::marker::PhantomData,
 					_phantom2: core::marker::PhantomData,

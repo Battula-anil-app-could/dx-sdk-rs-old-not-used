@@ -1,4 +1,4 @@
-pub const NON_PAYABLE_FUNC_MOA: &[u8] = b"function does not accept MOA payment";
+pub const NON_PAYABLE_FUNC_MOAX: &[u8] = b"function does not accept MOAX payment";
 pub const NON_PAYABLE_FUNC_DCT: &[u8] = b"function does not accept DCT payment";
 pub const BAD_TOKEN_PROVIDED: &[u8] = b"bad call value token provided";
 

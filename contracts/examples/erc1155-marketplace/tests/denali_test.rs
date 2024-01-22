@@ -24,8 +24,8 @@ fn _contract_map() -> ContractMap<TxContext> {
 /* is_smart_contract not yet implemented, uncomment later
 
 #[test]
-fn auction_single_token_moa_test() {
-	parse_execute_denali("denali/auction_single_token_moa.scen.json", &contract_map());
+fn auction_single_token_moax_test() {
+	parse_execute_denali("denali/auction_single_token_moax.scen.json", &contract_map());
 }
 
 #[test]
@@ -34,18 +34,18 @@ fn auction_batch_test() {
 }
 
 #[test]
-fn bid_first_moa_test() {
-	parse_execute_denali("denali/bid_first_moa.scen.json", &contract_map());
+fn bid_first_moax_test() {
+	parse_execute_denali("denali/bid_first_moax.scen.json", &contract_map());
 }
 
 #[test]
-fn bid_second_moa_test() {
-	parse_execute_denali("denali/bid_second_moa.scen.json", &contract_map());
+fn bid_second_moax_test() {
+	parse_execute_denali("denali/bid_second_moax.scen.json", &contract_map());
 }
 
 #[test]
-fn bid_third_moa_test() {
-	parse_execute_denali("denali/bid_third_moa.scen.json", &contract_map());
+fn bid_third_moax_test() {
+	parse_execute_denali("denali/bid_third_moax.scen.json", &contract_map());
 }
 
 #[test]

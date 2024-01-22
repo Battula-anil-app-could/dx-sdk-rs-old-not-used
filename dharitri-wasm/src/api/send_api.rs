@@ -9,18 +9,18 @@ use crate::types::{
 pub const DCT_TRANSFER_STRING: &[u8] = b"DCTTransfer";
 pub const DCT_NFT_TRANSFER_STRING: &[u8] = b"DCTNFTTransfer";
 
-/// API that groups methods that either send MOA or DCT, or that call other contracts.
+/// API that groups methods that either send MOAX or DCT, or that call other contracts.
 #[allow(clippy::too_many_arguments)] // TODO: some arguments should be grouped though
 pub trait SendApi<BigUint>: ErrorApi + Clone + Sized
 where
 	BigUint: BigUintApi + 'static,
 {
-	/// Sends MOA to a given address, directly.
-	/// Used especially for sending MOA to regular accounts.
-	fn direct_moa(&self, to: &Address, amount: &BigUint, data: &[u8]);
+	/// Sends MOAX to a given address, directly.
+	/// Used especially for sending MOAX to regular accounts.
+	fn direct_moax(&self, to: &Address, amount: &BigUint, data: &[u8]);
 
-	/// Sends MOA to an address (optionally) and executes like an async call, but without callback.
-	fn direct_moa_execute(
+	/// Sends MOAX to an address (optionally) and executes like an async call, but without callback.
+	fn direct_moax_execute(
 		&self,
 		to: &Address,
 		amount: &BigUint,
@@ -66,11 +66,11 @@ where
 		arg_buffer: &ArgBuffer,
 	);
 
-	/// Sends either MOA or an DCT token to the target address,
+	/// Sends either MOAX or an DCT token to the target address,
 	/// depending on what token identifier was specified.
 	fn direct(&self, to: &Address, token: &TokenIdentifier, amount: &BigUint, data: &[u8]) {
-		if token.is_moa() {
-			self.direct_moa(to, amount, data);
+		if token.is_moax() {
+			self.direct_moax(to, amount, data);
 		} else {
 			self.direct_dct_via_transf_exec(to, token.as_dct_identifier(), amount, data);
 		}
@@ -94,7 +94,7 @@ where
 		self.async_call_raw(&to, &BigUint::zero(), serializer.as_slice())
 	}
 
-	/// Sends either MOA or an DCT token to the target address,
+	/// Sends either MOAX or an DCT token to the target address,
 	/// depending on what token identifier was specified.
 	/// In case of DCT it performs an async call.
 	fn direct_via_async_call(
@@ -104,8 +104,8 @@ where
 		amount: &BigUint,
 		data: &[u8],
 	) {
-		if token.is_moa() {
-			self.direct_moa(to, amount, data);
+		if token.is_moax() {
+			self.direct_moax(to, amount, data);
 		} else {
 			self.direct_dct_via_async_call(to, token.as_dct_identifier(), amount, data);
 		}
@@ -119,13 +119,13 @@ where
 	/// Use a `HexCallDataSerializer` to prepare this field.
 	fn async_call_raw(&self, to: &Address, amount: &BigUint, data: &[u8]) -> !;
 
-	/// Sends an asynchronous call to another contract, with either MOA or DCT value.
+	/// Sends an asynchronous call to another contract, with either MOAX or DCT value.
 	/// The `token` argument decides which one it will be.
 	/// Calling this method immediately terminates tx execution.
 	fn async_call(&self, async_call: AsyncCall<BigUint>) -> ! {
 		self.async_call_raw(
 			&async_call.to,
-			&async_call.moa_payment,
+			&async_call.moax_payment,
 			async_call.hex_data.as_slice(),
 		)
 	}

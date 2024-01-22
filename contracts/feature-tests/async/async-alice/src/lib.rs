@@ -10,10 +10,10 @@ static HARDCODED_ADDRESS: [u8; 32] =
 
 #[dharitri_wasm_derive::callable(PayMeProxy)]
 pub trait PayMe {
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	fn payMe(&self, #[payment] _payment: BigUint, _arg1: i64) -> ContractCall<BigUint, ()>;
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	fn payMeWithResult(
 		&self,
 		#[payment] _payment: BigUint,
@@ -48,7 +48,7 @@ pub trait Alice {
 		self.set_other_contract(calee_address);
 	}
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	#[endpoint]
 	fn forwardToOtherContract(&self, #[payment] payment: BigUint) -> AsyncCall<BigUint> {
 		let other_contract = self.get_other_contract();
@@ -57,7 +57,7 @@ pub trait Alice {
 			.async_call()
 	}
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	#[endpoint]
 	fn forwardToOtherContractWithCallback(
 		&self,

@@ -153,8 +153,8 @@ pub trait Multisig {
 		self.propose_action(Action::ChangeQuorum(new_quorum))
 	}
 
-	#[endpoint(proposeSendMoa)]
-	fn propose_send_moa(
+	#[endpoint(proposeSendMoax)]
+	fn propose_send_moax(
 		&self,
 		to: Address,
 		amount: BigUint,
@@ -164,7 +164,7 @@ pub trait Multisig {
 			OptionalArg::Some(data) => data,
 			OptionalArg::None => BoxedBytes::empty(),
 		};
-		self.propose_action(Action::SendMoa { to, amount, data })
+		self.propose_action(Action::SendMoax { to, amount, data })
 	}
 
 	#[endpoint(proposeSCDeploy)]
@@ -201,13 +201,13 @@ pub trait Multisig {
 	fn propose_sc_call(
 		&self,
 		to: Address,
-		moa_payment: BigUint,
+		moax_payment: BigUint,
 		endpoint_name: BoxedBytes,
 		#[var_args] arguments: VarArgs<BoxedBytes>,
 	) -> SCResult<usize> {
 		self.propose_action(Action::SCCall {
 			to,
-			moa_payment,
+			moax_payment,
 			endpoint_name,
 			arguments: arguments.into_vec(),
 		})
@@ -463,8 +463,8 @@ pub trait Multisig {
 				self.quorum().set(&new_quorum);
 				Ok(PerformActionResult::Nothing)
 			},
-			Action::SendMoa { to, amount, data } => {
-				Ok(PerformActionResult::SendMoa(SendMoa { to, amount, data }))
+			Action::SendMoax { to, amount, data } => {
+				Ok(PerformActionResult::SendMoax(SendMoax { to, amount, data }))
 			},
 			Action::SCDeploy {
 				amount,
@@ -488,14 +488,14 @@ pub trait Multisig {
 			},
 			Action::SCCall {
 				to,
-				moa_payment,
+				moax_payment,
 				endpoint_name,
 				arguments,
 			} => {
 				let mut contract_call_raw = ContractCall::<BigUint, ()>::new(
 					to,
-					TokenIdentifier::moa(),
-					moa_payment,
+					TokenIdentifier::moax(),
+					moax_payment,
 					endpoint_name,
 				);
 				for arg in arguments {

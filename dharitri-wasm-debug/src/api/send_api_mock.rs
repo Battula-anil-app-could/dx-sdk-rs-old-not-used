@@ -7,7 +7,7 @@ use num_bigint::BigUint;
 use num_traits::Zero;
 
 impl TxContext {
-	fn get_available_moa_balance(&self) -> BigUint {
+	fn get_available_moax_balance(&self) -> BigUint {
 		// start with the pre-existing balance
 		let mut available_balance = self.blockchain_info_box.contract_balance.clone();
 
@@ -50,8 +50,8 @@ impl TxContext {
 }
 
 impl SendApi<RustBigUint> for TxContext {
-	fn direct_moa(&self, to: &Address, amount: &RustBigUint, _data: &[u8]) {
-		if amount.value() > self.get_available_moa_balance() {
+	fn direct_moax(&self, to: &Address, amount: &RustBigUint, _data: &[u8]) {
+		if amount.value() > self.get_available_moax_balance() {
 			std::panic::panic_any(TxPanic {
 				status: 10,
 				message: b"failed transfer (insufficient funds)".to_vec(),
@@ -61,12 +61,12 @@ impl SendApi<RustBigUint> for TxContext {
 		let mut tx_output = self.tx_output_cell.borrow_mut();
 		tx_output.send_balance_list.push(SendBalance {
 			recipient: to.clone(),
-			token: TokenIdentifier::moa(),
+			token: TokenIdentifier::moax(),
 			amount: amount.value(),
 		})
 	}
 
-	fn direct_moa_execute(
+	fn direct_moax_execute(
 		&self,
 		_to: &Address,
 		_amount: &RustBigUint,
@@ -74,7 +74,7 @@ impl SendApi<RustBigUint> for TxContext {
 		_function: &[u8],
 		_arg_buffer: &ArgBuffer,
 	) {
-		panic!("direct_moa_execute not yet implemented")
+		panic!("direct_moax_execute not yet implemented")
 	}
 
 	fn direct_dct_execute(

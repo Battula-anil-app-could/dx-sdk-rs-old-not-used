@@ -19,7 +19,7 @@ pub trait LocalDctAndDctNft {
 
 	// Fungible Tokens
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	#[endpoint(issueFungibleToken)]
 	fn issue_fungible_token(
 		&self,
@@ -72,7 +72,7 @@ pub trait LocalDctAndDctNft {
 
 	// Non-Fungible Tokens
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	#[endpoint(nftIssue)]
 	fn nft_issue(
 		&self,
@@ -190,7 +190,7 @@ pub trait LocalDctAndDctNft {
 
 	// Semi-Fungible
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	#[endpoint(sftIssue)]
 	fn sft_issue(
 		&self,
@@ -293,8 +293,8 @@ pub trait LocalDctAndDctNft {
 			},
 			AsyncCallResult::Err(message) => {
 				// return issue cost to the caller
-				if token_identifier.is_moa() && returned_tokens > 0 {
-					self.send().direct_moa(caller, &returned_tokens, &[]);
+				if token_identifier.is_moax() && returned_tokens > 0 {
+					self.send().direct_moax(caller, &returned_tokens, &[]);
 				}
 
 				self.last_error_message().set(&message.err_msg);
@@ -316,8 +316,8 @@ pub trait LocalDctAndDctNft {
 			AsyncCallResult::Err(message) => {
 				// return issue cost to the caller
 				let (returned_tokens, token_identifier) = self.call_value().payment_token_pair();
-				if token_identifier.is_moa() && returned_tokens > 0 {
-					self.send().direct_moa(caller, &returned_tokens, &[]);
+				if token_identifier.is_moax() && returned_tokens > 0 {
+					self.send().direct_moax(caller, &returned_tokens, &[]);
 				}
 
 				self.last_error_message().set(&message.err_msg);

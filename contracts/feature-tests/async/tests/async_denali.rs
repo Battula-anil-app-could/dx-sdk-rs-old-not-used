@@ -78,8 +78,8 @@ fn payment_sameshard() {
 }
 
 #[test]
-fn send_moa() {
-	parse_execute_denali("denali/send_moa.scen.json", &contract_map());
+fn send_moax() {
+	parse_execute_denali("denali/send_moax.scen.json", &contract_map());
 }
 
 #[test]

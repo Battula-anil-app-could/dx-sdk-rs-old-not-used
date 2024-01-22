@@ -33,28 +33,28 @@ fn payable_any_4() {
 }
 
 #[test]
-fn payable_moa_0() {
-	parse_execute_denali("denali/payable_moa_0.scen.json", &contract_map());
+fn payable_moax_0() {
+	parse_execute_denali("denali/payable_moax_0.scen.json", &contract_map());
 }
 
 #[test]
-fn payable_moa_1() {
-	parse_execute_denali("denali/payable_moa_1.scen.json", &contract_map());
+fn payable_moax_1() {
+	parse_execute_denali("denali/payable_moax_1.scen.json", &contract_map());
 }
 
 #[test]
-fn payable_moa_2() {
-	parse_execute_denali("denali/payable_moa_2.scen.json", &contract_map());
+fn payable_moax_2() {
+	parse_execute_denali("denali/payable_moax_2.scen.json", &contract_map());
 }
 
 #[test]
-fn payable_moa_3() {
-	parse_execute_denali("denali/payable_moa_3.scen.json", &contract_map());
+fn payable_moax_3() {
+	parse_execute_denali("denali/payable_moax_3.scen.json", &contract_map());
 }
 
 #[test]
-fn payable_moa_4() {
-	parse_execute_denali("denali/payable_moa_4.scen.json", &contract_map());
+fn payable_moax_4() {
+	parse_execute_denali("denali/payable_moax_4.scen.json", &contract_map());
 }
 
 #[test]

@@ -61,7 +61,7 @@ pub trait KittyOwnership {
 		only_owner!(self, "Only owner may call this function!");
 
 		self.send()
-			.direct_moa(&self.get_caller(), &self.get_sc_balance(), b"claim");
+			.direct_moax(&self.get_caller(), &self.get_sc_balance(), b"claim");
 
 		Ok(())
 	}
@@ -303,7 +303,7 @@ pub trait KittyOwnership {
 		Ok(())
 	}
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	#[endpoint(breedWith)]
 	fn breed_with(
 		&self,
@@ -601,7 +601,7 @@ pub trait KittyOwnership {
 				// send birth fee to caller
 				let fee = self.get_birth_fee();
 				self.send()
-					.direct_moa(&original_caller, &fee, b"birth fee");
+					.direct_moax(&original_caller, &fee, b"birth fee");
 			},
 			AsyncCallResult::Err(_) => {
 				// this can only fail if the kitty_genes contract address is invalid

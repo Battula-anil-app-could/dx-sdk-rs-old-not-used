@@ -1,6 +1,6 @@
 use dharitri_wasm::api::{BigUintApi, EndpointFinishApi, ErrorApi, SendApi};
 use dharitri_wasm::io::EndpointResult;
-use dharitri_wasm::types::{Address, AsyncCall, BoxedBytes, CodeMetadata, SendMoa, Vec};
+use dharitri_wasm::types::{Address, AsyncCall, BoxedBytes, CodeMetadata, SendMoax, Vec};
 dharitri_wasm::derive_imports!();
 
 #[derive(NestedEncode, NestedDecode, TopEncode, TopDecode, TypeAbi)]
@@ -10,7 +10,7 @@ pub enum Action<BigUint: BigUintApi> {
 	AddProposer(Address),
 	RemoveUser(Address),
 	ChangeQuorum(usize),
-	SendMoa {
+	SendMoax {
 		to: Address,
 		amount: BigUint,
 		data: BoxedBytes,
@@ -23,7 +23,7 @@ pub enum Action<BigUint: BigUintApi> {
 	},
 	SCCall {
 		to: Address,
-		moa_payment: BigUint,
+		moax_payment: BigUint,
 		endpoint_name: BoxedBytes,
 		arguments: Vec<BoxedBytes>,
 	},
@@ -49,7 +49,7 @@ pub struct ActionFullInfo<BigUint: BigUintApi> {
 #[derive(TypeAbi)]
 pub enum PerformActionResult<BigUint: BigUintApi> {
 	Nothing,
-	SendMoa(SendMoa<BigUint>),
+	SendMoax(SendMoax<BigUint>),
 	DeployResult(Address),
 	AsyncCall(AsyncCall<BigUint>),
 }
@@ -62,7 +62,7 @@ where
 	fn finish(&self, api: FA) {
 		match self {
 			PerformActionResult::Nothing => (),
-			PerformActionResult::SendMoa(send_moa) => send_moa.finish(api),
+			PerformActionResult::SendMoax(send_moax) => send_moax.finish(api),
 			PerformActionResult::DeployResult(address) => address.finish(api),
 			PerformActionResult::AsyncCall(async_call) => async_call.finish(api),
 		}

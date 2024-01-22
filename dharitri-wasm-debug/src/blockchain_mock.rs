@@ -208,7 +208,7 @@ impl BlockchainMock {
 		send_balance_list: &[SendBalance],
 	) -> Result<(), BlockchainMockError> {
 		for send_balance in send_balance_list {
-			if send_balance.token.is_moa() {
+			if send_balance.token.is_moax() {
 				self.subtract_tx_payment(contract_address, &send_balance.amount)?;
 				self.increase_balance(&send_balance.recipient, &send_balance.amount);
 			} else {

@@ -57,7 +57,7 @@ fn validate_payable_arg(m: &Method) {
 	}
 	if let PublicRole::Init(init_metadata) = &m.public_role {
 		if !init_metadata.payable.no_dct() {
-			panic!("only MOA payments currently allowed in constructors");
+			panic!("only MOAX payments currently allowed in constructors");
 		}
 	}
 }

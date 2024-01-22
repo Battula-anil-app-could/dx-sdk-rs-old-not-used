@@ -84,7 +84,7 @@ pub trait Lottery {
 	) -> SCResult<()> {
 		require!(!lottery_name.is_empty(), "Name can't be empty!");
 		require!(
-			!dct_token_name.is_moa(),
+			!dct_token_name.is_moax(),
 			"Dct token name can't be empty!"
 		);
 

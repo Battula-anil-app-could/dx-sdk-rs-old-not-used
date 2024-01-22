@@ -31,8 +31,8 @@ where
 {
 	#[inline]
 	fn finish(&self, api: FA) {
-		if self.token.is_moa() {
-			api.direct_moa_execute(
+		if self.token.is_moax() {
+			api.direct_moax_execute(
 				&self.to,
 				&self.amount,
 				self.gas_limit,

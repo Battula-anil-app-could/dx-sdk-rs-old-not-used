@@ -24,7 +24,7 @@ fn payable_snippet_for_metadata(
 			let token_init = if let Some(arg) = token_arg {
 				let pat = &arg.pat;
 				quote! {
-					let #pat = TokenIdentifier::moa();
+					let #pat = TokenIdentifier::moax();
 				}
 			} else {
 				quote! {}
@@ -35,18 +35,18 @@ fn payable_snippet_for_metadata(
 				#token_init
 			}
 		},
-		MethodPayableMetadata::Moa => {
+		MethodPayableMetadata::Moax => {
 			let payment_var_name = var_name_or_underscore(payment_arg);
 			let token_init = if let Some(arg) = token_arg {
 				let pat = &arg.pat;
 				quote! {
-					let #pat = TokenIdentifier::moa();
+					let #pat = TokenIdentifier::moax();
 				}
 			} else {
 				quote! {}
 			};
 			quote! {
-				let #payment_var_name = self.call_value().require_moa();
+				let #payment_var_name = self.call_value().require_moax();
 				#token_init
 			}
 		},
@@ -121,7 +121,7 @@ fn generate_payment_snippet_for_arg_type(
 	let type_str = type_path_segment.ident.to_string();
 	match type_str.as_str() {
 		"BigUint" => quote! {
-			let #pat = self.api.moa_value();
+			let #pat = self.api.moax_value();
 		},
 		other_stype_str => panic!(
 			"Arguments annotated with #[payment] must be of type BigUint. Found: {}",

@@ -5,29 +5,29 @@ use dharitri_codec::*;
 
 /// Specialized type for handling token identifiers.
 /// It wraps a BoxedBytes with the full ASCII name of the token.
-/// MOA is stored as an empty name.
+/// MOAX is stored as an empty name.
 ///
 /// Not yet implemented, but we might add additional restrictions when deserializing as argument.
 #[derive(Clone, PartialEq, Debug)]
 pub struct TokenIdentifier(BoxedBytes);
 
 impl TokenIdentifier {
-	/// This special representation is interpreted as the MOA token.
-	pub const MOA_REPRESENTATION: &'static [u8] = b"MOA";
+	/// This special representation is interpreted as the MOAX token.
+	pub const MOAX_REPRESENTATION: &'static [u8] = b"MOAX";
 
-	/// New instance of the special MOA token representation.
-	pub fn moa() -> Self {
+	/// New instance of the special MOAX token representation.
+	pub fn moax() -> Self {
 		TokenIdentifier(BoxedBytes::empty())
 	}
 
 	#[inline]
-	pub fn is_moa(&self) -> bool {
+	pub fn is_moax(&self) -> bool {
 		self.0.is_empty()
 	}
 
 	#[inline]
 	pub fn is_dct(&self) -> bool {
-		!self.is_moa()
+		!self.is_moax()
 	}
 
 	#[inline]
@@ -50,8 +50,8 @@ impl TokenIdentifier {
 
 	#[inline]
 	pub fn as_name(&self) -> &[u8] {
-		if self.is_moa() {
-			TokenIdentifier::MOA_REPRESENTATION
+		if self.is_moax() {
+			TokenIdentifier::MOAX_REPRESENTATION
 		} else {
 			self.0.as_slice()
 		}
@@ -68,8 +68,8 @@ impl AsRef<[u8]> for TokenIdentifier {
 impl From<BoxedBytes> for TokenIdentifier {
 	#[inline]
 	fn from(boxed_bytes: BoxedBytes) -> Self {
-		if boxed_bytes.as_slice() == TokenIdentifier::MOA_REPRESENTATION {
-			TokenIdentifier::moa()
+		if boxed_bytes.as_slice() == TokenIdentifier::MOAX_REPRESENTATION {
+			TokenIdentifier::moax()
 		} else {
 			TokenIdentifier(boxed_bytes)
 		}
@@ -79,8 +79,8 @@ impl From<BoxedBytes> for TokenIdentifier {
 impl<'a> From<&'a [u8]> for TokenIdentifier {
 	#[inline]
 	fn from(byte_slice: &'a [u8]) -> Self {
-		if byte_slice == TokenIdentifier::MOA_REPRESENTATION {
-			TokenIdentifier::moa()
+		if byte_slice == TokenIdentifier::MOAX_REPRESENTATION {
+			TokenIdentifier::moax()
 		} else {
 			TokenIdentifier(BoxedBytes::from(byte_slice))
 		}
@@ -90,8 +90,8 @@ impl<'a> From<&'a [u8]> for TokenIdentifier {
 impl PartialEq<&[u8]> for TokenIdentifier {
 	#[inline]
 	fn eq(&self, other: &&[u8]) -> bool {
-		if self.is_moa() {
-			*other == TokenIdentifier::MOA_REPRESENTATION
+		if self.is_moax() {
+			*other == TokenIdentifier::MOAX_REPRESENTATION
 		} else {
 			self.0.as_slice().eq(*other)
 		}
@@ -174,28 +174,28 @@ mod tests {
 	use dharitri_codec::test_util::*;
 
 	#[test]
-	fn test_moa() {
-		assert!(TokenIdentifier::moa().is_moa());
+	fn test_moax() {
+		assert!(TokenIdentifier::moax().is_moax());
 	}
 
 	#[test]
 	fn test_codec() {
 		check_top_encode_decode(
-			TokenIdentifier::moa(),
-			TokenIdentifier::MOA_REPRESENTATION,
+			TokenIdentifier::moax(),
+			TokenIdentifier::MOAX_REPRESENTATION,
 		);
 		check_dep_encode_decode(
-			TokenIdentifier::moa(),
-			dep_encode_to_vec_or_panic(&TokenIdentifier::MOA_REPRESENTATION).as_slice(),
+			TokenIdentifier::moax(),
+			dep_encode_to_vec_or_panic(&TokenIdentifier::MOAX_REPRESENTATION).as_slice(),
 		);
 
 		// also allowed
 		assert_eq!(
-			TokenIdentifier::moa(),
+			TokenIdentifier::moax(),
 			check_top_decode::<TokenIdentifier>(&[])
 		);
 		assert_eq!(
-			TokenIdentifier::moa(),
+			TokenIdentifier::moax(),
 			check_dep_decode::<TokenIdentifier>(&[0, 0, 0, 0])
 		);
 	}

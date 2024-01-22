@@ -6,10 +6,10 @@ use dharitri_wasm::types::{DctTokenType, TokenIdentifier};
 
 impl CallValueApi<RustBigUint> for TxContext {
 	fn check_not_payable(&self) {
-		if self.moa_value() > 0 {
+		if self.moax_value() > 0 {
 			std::panic::panic_any(TxPanic {
 				status: 10,
-				message: err_msg::NON_PAYABLE_FUNC_MOA.to_vec(),
+				message: err_msg::NON_PAYABLE_FUNC_MOAX.to_vec(),
 			});
 		}
 		if self.dct_value() > 0 {
@@ -21,7 +21,7 @@ impl CallValueApi<RustBigUint> for TxContext {
 	}
 
 	#[inline]
-	fn moa_value(&self) -> RustBigUint {
+	fn moax_value(&self) -> RustBigUint {
 		self.tx_input_box.call_value.clone().into()
 	}
 

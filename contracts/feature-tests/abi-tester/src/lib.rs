@@ -83,8 +83,8 @@ pub trait AbiTester {
 	}
 
 	#[endpoint]
-	#[payable("MOA")]
-	fn payable_moa(&self, #[payment] _payment: BigUint, #[payment_token] _token: TokenIdentifier) {
+	#[payable("MOAX")]
+	fn payable_moax(&self, #[payment] _payment: BigUint, #[payment_token] _token: TokenIdentifier) {
 	}
 
 	#[endpoint]

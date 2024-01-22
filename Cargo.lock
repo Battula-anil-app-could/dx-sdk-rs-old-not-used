@@ -188,7 +188,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "crowdfunding-moa"
+name = "crowdfunding-moax"
 version = "0.0.0"
 dependencies = [
  "dharitri-wasm",
@@ -198,10 +198,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "crowdfunding-moa-abi"
+name = "crowdfunding-moax-abi"
 version = "0.0.0"
 dependencies = [
- "crowdfunding-moa",
+ "crowdfunding-moax",
  "dharitri-wasm",
  "dharitri-wasm-debug",
 ]
@@ -299,7 +299,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-wasm"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "arrayvec",
  "dharitri-codec",
@@ -310,7 +310,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-wasm-debug"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "denali",
  "dharitri-wasm",
@@ -325,7 +325,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-wasm-derive"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "hex",
  "proc-macro2",
@@ -335,7 +335,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-wasm-module-features"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "dharitri-wasm",
  "dharitri-wasm-debug",
@@ -345,7 +345,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-wasm-module-pause"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "dharitri-wasm",
  "dharitri-wasm-debug",
@@ -355,7 +355,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-wasm-module-users"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "dharitri-wasm",
  "dharitri-wasm-debug",
@@ -365,7 +365,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-wasm-node"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "dharitri-wasm",
 ]
@@ -654,7 +654,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "lottery-moa"
+name = "lottery-moax"
 version = "0.0.0"
 dependencies = [
  "dharitri-wasm",
@@ -664,12 +664,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "lottery-moa-abi"
+name = "lottery-moax-abi"
 version = "0.0.0"
 dependencies = [
  "dharitri-wasm",
  "dharitri-wasm-debug",
- "lottery-moa",
+ "lottery-moax",
 ]
 
 [[package]]
@@ -679,7 +679,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8452105ba047068f40ff7093dd1d9da90898e63dd61736462e9cdda6a90ad3c3"
 
 [[package]]
-name = "moa-dct-swap"
+name = "moax-dct-swap"
 version = "0.0.0"
 dependencies = [
  "dharitri-wasm",
@@ -689,12 +689,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "moa-dct-swap-abi"
+name = "moax-dct-swap-abi"
 version = "0.0.0"
 dependencies = [
  "dharitri-wasm",
  "dharitri-wasm-debug",
- "moa-dct-swap",
+ "moax-dct-swap",
 ]
 
 [[package]]
@@ -811,7 +811,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "ping-pong-moa"
+name = "ping-pong-moax"
 version = "0.0.2"
 dependencies = [
  "dharitri-wasm",
@@ -821,12 +821,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "ping-pong-moa-abi"
+name = "ping-pong-moax-abi"
 version = "0.0.0"
 dependencies = [
  "dharitri-wasm",
  "dharitri-wasm-debug",
- "ping-pong-moa",
+ "ping-pong-moax",
 ]
 
 [[package]]

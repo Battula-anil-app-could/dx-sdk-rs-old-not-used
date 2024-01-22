@@ -6,7 +6,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-## [dharitri-wasm 0.0.5, denali 0.0.3, dharitri-codec 0.0.4]
+## [dharitri-wasm 0.14.0, denali 0.0.3, dharitri-codec 0.0.4]
 - DCT functionality:
 	- DCT system smart contract proxy, though which it is possible to mint, burn, issue, freeze, pause, etc.
 	- Endpoints to handle NFTs. Also added NFT management in the  DCT system smart contract proxy
@@ -38,7 +38,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - SingleValueMapper redesigned for easier use. It no longer keeps the storage value cached.
 
 ## [dharitri-wasm 0.12.0] - 2021-02-25
-- Reorganized DCT and MOA direct send api.
+- Reorganized DCT and MOAX direct send api.
 - New async call syntax
 	- redesigned contract proxies
 	- contract calls are communicated via objects returned from endpoint methods
@@ -61,17 +61,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
     - contracts now use the new API + more denali tests
 - Call Value API refactor and `#[payable]` updates:
 	- Main features:
-    	- `#[payable]` annotation more versatile: `#[payable("MOA")]` `#[payable("TOKEN-ID")]` `#[payable("*")]`
+    	- `#[payable]` annotation more versatile: `#[payable("MOAX")]` `#[payable("TOKEN-ID")]` `#[payable("*")]`
     	- `#[payable]` still accepted but throws a warning, will become unsupported in the future.
     	- `#[payment]` argument attribute now also provides DCT payment where applicable
-    	- a new TokenIdentifier type that encodes the MOA special token and any DCT token
+    	- a new TokenIdentifier type that encodes the MOAX special token and any DCT token
     	- a new `#[token_identifier]` argument attribute provides the token id. Similar to `#[payment]` it is a fake argument, not exported.
-    	- ABI updated ("payableInTokens" is no longer restricted to "MOA")
+    	- ABI updated ("payableInTokens" is no longer restricted to "MOAX")
     	- all new features covered by denali tests
-    	- async proxies still only accept `#[payable("MOA")]`, but that is for future updates
+    	- async proxies still only accept `#[payable("MOAX")]`, but that is for future updates
 	- Less visible changes:
     	- all call value hooks now grouped in a new CallValueApi
-    	- for low-level access, developers now need to write self.call_value().moa_value(), etc.
+    	- for low-level access, developers now need to write self.call_value().moax_value(), etc.
     	- some optimizations in the handling of call value hooks
 	- Refactoring:
     	- parse_attr mod was split into a proper folder with many files, since it had grown too large
@@ -152,7 +152,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Avoid function selector infinite loop
 - Crowdfunding contract initial commit
 
-## [dharitri-wasm 0.7.0, denali 0.1.0] - 2020-10-06
+## [dharitri-wasm 0.7.0, denali 0.0.2] - 2020-10-06
 - Code coverage now possible
 - Denali in Rust
 - Modules properly integrated in the build process
@@ -178,14 +178,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - MultiResultVec - new, from_iter
 - EncodeError type
 
-## [dharitri-wasm 0.5.3, dharitri-codec 0.1.0] - 2020-07-10
+## [dharitri-wasm 0.5.3, dharitri-codec 0.0.2] - 2020-07-10
 - Extracted dharitri-codec to separate crate
 - Fixed non_snake_case endpoint handling
 
 ## [dharitri-wasm 0.5.2] - 2020-07-09
 - Queue type
 
-## [dharitri-wasm 0.5.1] - 2020-07-02
+## [dharitri-wasm 0.0.4] - 2020-07-02
 - `#[view]` attribute, same as `#[endpoint]`
 - `#[init]` attribute
 - `storage get mut` annotation + BorrowedMutStorage
@@ -250,7 +250,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [dharitri-wasm 0.1.1] - 2020-02-27
 - Async call contract proxy infrastructure
 
-## [dharitri-wasm 0.1.0] - 2020-02-05 
+## [dharitri-wasm 0.0.2] - 2020-02-05 
 - Initial relase of the framework
 - Main features at this time:
 	- contract main macro

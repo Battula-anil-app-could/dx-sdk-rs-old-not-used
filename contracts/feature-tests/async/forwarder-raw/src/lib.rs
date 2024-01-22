@@ -82,16 +82,16 @@ pub trait ForwarderRaw {
 	}
 
 	#[endpoint]
-	#[payable("MOA")]
-	fn forward_transf_exec_moa(
+	#[payable("MOAX")]
+	fn forward_transf_exec_moax(
 		&self,
 		to: Address,
 		#[payment] payment: BigUint,
 		endpoint_name: BoxedBytes,
 		#[var_args] args: VarArgs<BoxedBytes>,
-	) -> TransferMoaExecute<BigUint> {
-		self.forward_contract_call(to, TokenIdentifier::moa(), payment, endpoint_name, args)
-			.transfer_moa_execute()
+	) -> TransferMoaxExecute<BigUint> {
+		self.forward_contract_call(to, TokenIdentifier::moax(), payment, endpoint_name, args)
+			.transfer_moax_execute()
 			.with_gas_limit(self.get_gas_left() / 2)
 	}
 
@@ -169,7 +169,7 @@ pub trait ForwarderRaw {
 	// SYNC CALLS
 
 	#[endpoint]
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	fn call_execute_on_dest_context(
 		&self,
 		to: Address,
@@ -190,7 +190,7 @@ pub trait ForwarderRaw {
 	}
 
 	#[endpoint]
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	fn call_execute_on_dest_context_twice(
 		&self,
 		to: Address,

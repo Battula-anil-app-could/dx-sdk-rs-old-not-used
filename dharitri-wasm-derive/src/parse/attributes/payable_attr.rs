@@ -1,7 +1,7 @@
 use super::attr_names::*;
 use super::util::*;
 
-static MOA_DEFAULT: &str = "MOA";
+static MOAX_DEFAULT: &str = "MOAX";
 
 pub fn is_payment(pat: &syn::PatType) -> bool {
 	has_attribute(&pat.attrs, ATTR_PAYMENT)

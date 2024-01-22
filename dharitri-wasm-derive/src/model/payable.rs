@@ -4,7 +4,7 @@
 pub enum MethodPayableMetadata {
 	NoMetadata,
 	NotPayable,
-	Moa,
+	Moax,
 	SingleDctToken(String),
 	AnyToken,
 }
@@ -17,14 +17,14 @@ impl MethodPayableMetadata {
 	pub fn no_dct(&self) -> bool {
 		matches!(
 			self,
-			MethodPayableMetadata::NotPayable | MethodPayableMetadata::Moa
+			MethodPayableMetadata::NotPayable | MethodPayableMetadata::Moax
 		)
 	}
 
 	pub fn abi_strings(&self) -> Vec<String> {
 		match self {
 			MethodPayableMetadata::NoMetadata | MethodPayableMetadata::NotPayable => Vec::new(),
-			MethodPayableMetadata::Moa => vec!["MOA".to_string()],
+			MethodPayableMetadata::Moax => vec!["MOAX".to_string()],
 			MethodPayableMetadata::SingleDctToken(s) => vec![s.clone()],
 			MethodPayableMetadata::AnyToken => vec!["*".to_string()],
 		}

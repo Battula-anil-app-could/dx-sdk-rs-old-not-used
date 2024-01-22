@@ -7,7 +7,7 @@ pub trait SendTxRepeat {
 	#[init]
 	fn init(&self) {}
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	#[endpoint]
 	fn repeat(
 		&self,
@@ -21,7 +21,7 @@ pub trait SendTxRepeat {
 			OptionalArg::None => Vec::new(),
 		};
 		for _ in 0..times {
-			self.send().direct_moa(&to, &amount, &data);
+			self.send().direct_moax(&to, &amount, &data);
 		}
 	}
 }

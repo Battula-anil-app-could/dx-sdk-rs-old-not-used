@@ -167,7 +167,7 @@ pub trait KittyAuction {
 		))
 	}
 
-	#[payable("MOA")]
+	#[payable("MOAX")]
 	#[endpoint]
 	fn bid(&self, kitty_id: u32, #[payment] payment: BigUint) -> SCResult<()> {
 		require!(
@@ -202,7 +202,7 @@ pub trait KittyAuction {
 		// refund losing bid
 		if auction.current_winner != Address::zero() {
 			self.send()
-				.direct_moa(&auction.current_winner, &auction.current_bid, b"bid refund");
+				.direct_moax(&auction.current_winner, &auction.current_bid, b"bid refund");
 		}
 
 		// update auction bid and winner
@@ -381,7 +381,7 @@ pub trait KittyAuction {
 				if auction.kitty_owner != self.get_sc_address()
 					&& auction.current_winner != Address::zero()
 				{
-					self.send().direct_moa(
+					self.send().direct_moax(
 						&auction.kitty_owner,
 						&auction.current_bid,
 						b"sold kitty",

@@ -9,7 +9,7 @@ use alloc::vec::Vec;
 #[must_use]
 pub struct AsyncCall<BigUint: BigUintApi> {
 	pub(crate) to: Address,
-	pub(crate) moa_payment: BigUint,
+	pub(crate) moax_payment: BigUint,
 	pub(crate) hex_data: HexCallDataSerializer,
 	pub(crate) callback_data: HexCallDataSerializer,
 }
@@ -34,7 +34,7 @@ where
 		api.storage_store_tx_hash_key(self.callback_data.as_slice());
 
 		// last, send the async call, which will kill the execution
-		api.async_call_raw(&self.to, &self.moa_payment, self.hex_data.as_slice());
+		api.async_call_raw(&self.to, &self.moax_payment, self.hex_data.as_slice());
 	}
 }
 

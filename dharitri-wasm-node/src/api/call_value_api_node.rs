@@ -29,7 +29,7 @@ impl CallValueApi<ArwenBigUint> for ArwenApiImpl {
 		}
 	}
 
-	fn moa_value(&self) -> ArwenBigUint {
+	fn moax_value(&self) -> ArwenBigUint {
 		unsafe {
 			let result = bigIntNew(0);
 			bigIntGetCallValue(result);
@@ -50,7 +50,7 @@ impl CallValueApi<ArwenBigUint> for ArwenApiImpl {
 			let mut name_buffer = [0u8; MAX_POSSIBLE_TOKEN_IDENTIFIER_LENGTH];
 			let name_len = getDCTTokenName(name_buffer.as_mut_ptr());
 			if name_len == 0 {
-				TokenIdentifier::moa()
+				TokenIdentifier::moax()
 			} else {
 				BoxedBytes::from(&name_buffer[..name_len as usize]).into()
 			}

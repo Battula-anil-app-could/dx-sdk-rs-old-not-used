@@ -1,5 +1,5 @@
 use crate::types::{
-	Address, ArgBuffer, AsyncCall, BoxedBytes, TokenIdentifier, TransferMoaExecute,
+	Address, ArgBuffer, AsyncCall, BoxedBytes, TokenIdentifier, TransferMoaxExecute,
 	TransferDctExecute, TransferExecute,
 };
 use crate::{
@@ -62,7 +62,7 @@ where
 	/// If this is an DCT call, it converts it to a regular call to DCTTransfer.
 	/// Async calls require this step, but not `transfer_dct_execute`.
 	fn convert_to_dct_transfer_call(self) -> Self {
-		if !self.token.is_moa() {
+		if !self.token.is_moax() {
 			let mut new_arg_buffer = ArgBuffer::new();
 			new_arg_buffer.push_argument_bytes(self.token.as_dct_identifier());
 			new_arg_buffer.push_argument_bytes(self.payment.to_bytes_be().as_slice());
@@ -70,7 +70,7 @@ where
 
 			ContractCall {
 				to: self.to,
-				token: TokenIdentifier::moa(),
+				token: TokenIdentifier::moax(),
 				payment: BigUint::zero(),
 				endpoint_name: BoxedBytes::from(DCT_TRANSFER_STRING),
 				arg_buffer: new_arg_buffer.concat(self.arg_buffer),
@@ -85,7 +85,7 @@ where
 		self = self.convert_to_dct_transfer_call();
 		AsyncCall {
 			to: self.to,
-			moa_payment: self.payment,
+			moax_payment: self.payment,
 			hex_data: HexCallDataSerializer::from_arg_buffer(
 				self.endpoint_name.as_slice(),
 				&self.arg_buffer,
@@ -94,12 +94,12 @@ where
 		}
 	}
 
-	/// Produces an MOA (or no value) transfer-execute call, no callback.
+	/// Produces an MOAX (or no value) transfer-execute call, no callback.
 	/// Will always result in a `transferValueExecute` call.
-	pub fn transfer_moa_execute(self) -> TransferMoaExecute<BigUint> {
-		TransferMoaExecute {
+	pub fn transfer_moax_execute(self) -> TransferMoaxExecute<BigUint> {
+		TransferMoaxExecute {
 			to: self.to,
-			moa_payment: self.payment,
+			moax_payment: self.payment,
 			endpoint_name: self.endpoint_name,
 			arg_buffer: self.arg_buffer,
 			gas_limit: 0,

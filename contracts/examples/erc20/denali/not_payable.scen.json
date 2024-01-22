@@ -37,7 +37,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept MOA payment",
+                "message": "str:function does not accept MOAX payment",
                 "logs": [],
                 "gas": "*",
                 "refund": "*"
@@ -60,7 +60,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept MOA payment",
+                "message": "str:function does not accept MOAX payment",
                 "logs": [],
                 "gas": "*",
                 "refund": "*"
@@ -84,7 +84,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept MOA payment",
+                "message": "str:function does not accept MOAX payment",
                 "logs": [],
                 "gas": "*",
                 "refund": "*"
@@ -108,7 +108,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept MOA payment",
+                "message": "str:function does not accept MOAX payment",
                 "logs": [],
                 "gas": "*",
                 "refund": "*"
@@ -132,7 +132,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept MOA payment",
+                "message": "str:function does not accept MOAX payment",
                 "logs": [],
                 "gas": "*",
                 "refund": "*"
@@ -157,7 +157,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept MOA payment",
+                "message": "str:function does not accept MOAX payment",
                 "logs": [],
                 "gas": "*",
                 "refund": "*"

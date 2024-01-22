@@ -108,7 +108,7 @@ extern "C" {
 }
 
 impl SendApi<ArwenBigUint> for ArwenApiImpl {
-	fn direct_moa(&self, to: &Address, amount: &ArwenBigUint, data: &[u8]) {
+	fn direct_moax(&self, to: &Address, amount: &ArwenBigUint, data: &[u8]) {
 		unsafe {
 			let amount_bytes32_ptr = amount.unsafe_buffer_load_be_pad_right(32);
 			let _ = transferValue(
@@ -120,7 +120,7 @@ impl SendApi<ArwenBigUint> for ArwenApiImpl {
 		}
 	}
 
-	fn direct_moa_execute(
+	fn direct_moax_execute(
 		&self,
 		to: &Address,
 		amount: &ArwenBigUint,

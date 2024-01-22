@@ -5,7 +5,7 @@
 dharitri_wasm::imports!();
 
 /// Contract that only tests the call value features,
-/// i.e. the framework/Arwen functionality for accepting MOA and DCT payments.
+/// i.e. the framework/Arwen functionality for accepting MOAX and DCT payments.
 #[dharitri_wasm_derive::contract(PayableFeaturesImpl)]
 pub trait PayableFeatures {
 	#[view]
@@ -15,7 +15,7 @@ pub trait PayableFeatures {
 	) -> MultiResult5<BigUint, BigUint, TokenIdentifier, BigUint, TokenIdentifier> {
 		let (pair_call_value, pair_token_name) = self.call_value().payment_token_pair();
 		(
-			self.call_value().moa_value(),
+			self.call_value().moax_value(),
 			self.call_value().dct_value(),
 			self.call_value().token(),
 			pair_call_value,
@@ -60,7 +60,7 @@ pub trait PayableFeatures {
 	/// Will issue a warning, but this is ok, this is the test.
 	#[endpoint]
 	#[payable]
-	fn payable_moa_0(
+	fn payable_moax_0(
 		&self,
 		#[payment] payment: BigUint,
 		#[payment_token] token: TokenIdentifier,
@@ -69,18 +69,18 @@ pub trait PayableFeatures {
 	}
 
 	#[endpoint]
-	#[payable("MOA")]
-	fn payable_moa_1(
+	#[payable("MOAX")]
+	fn payable_moax_1(
 		&self,
 		#[payment_token] token: TokenIdentifier,
 	) -> MultiResult2<BigUint, TokenIdentifier> {
-		let payment = self.call_value().moa_value();
+		let payment = self.call_value().moax_value();
 		(payment, token).into()
 	}
 
 	#[endpoint]
-	#[payable("MOA")]
-	fn payable_moa_2(
+	#[payable("MOAX")]
+	fn payable_moax_2(
 		&self,
 		#[payment] payment: BigUint,
 	) -> MultiResult2<BigUint, TokenIdentifier> {
@@ -89,19 +89,19 @@ pub trait PayableFeatures {
 	}
 
 	#[endpoint]
-	#[payable("MOA")]
-	fn payable_moa_3(
+	#[payable("MOAX")]
+	fn payable_moax_3(
 		&self,
 		#[payment_token] token: TokenIdentifier,
 	) -> MultiResult2<BigUint, TokenIdentifier> {
-		let payment = self.call_value().moa_value();
+		let payment = self.call_value().moax_value();
 		(payment, token).into()
 	}
 
 	#[endpoint]
-	#[payable("MOA")]
-	fn payable_moa_4(&self) -> MultiResult2<BigUint, TokenIdentifier> {
-		let payment = self.call_value().moa_value();
+	#[payable("MOAX")]
+	fn payable_moax_4(&self) -> MultiResult2<BigUint, TokenIdentifier> {
+		let payment = self.call_value().moax_value();
 		let token = self.call_value().token();
 		(payment, token).into()
 	}

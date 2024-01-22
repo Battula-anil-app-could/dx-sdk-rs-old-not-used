@@ -138,7 +138,7 @@ impl<BigUint: BigUintApi> DCTSystemSmartContractProxy<BigUint> {
 
 		let mut contract_call = ContractCall::new(
 			dct_system_sc_address(),
-			TokenIdentifier::moa(),
+			TokenIdentifier::moax(),
 			issue_cost,
 			BoxedBytes::from(endpoint_name),
 		);
@@ -340,7 +340,7 @@ fn dct_system_sc_call_no_args<BigUint: BigUintApi>(
 ) -> ContractCall<BigUint, ()> {
 	ContractCall::new(
 		dct_system_sc_address(),
-		TokenIdentifier::moa(),
+		TokenIdentifier::moax(),
 		BigUint::zero(),
 		endpoint_name.into(),
 	)
