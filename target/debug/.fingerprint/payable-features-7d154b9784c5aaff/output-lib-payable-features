@@ -1,1 +1,0 @@
-Warning: usage of #[payable] without argument is deprecated. Replace with #[payable("MOAX")]. Method name: payable_moax_0
